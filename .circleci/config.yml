@@ -51,14 +51,14 @@ jobs:
           command: |
             cd src/test/java
             # Get list of classnames of tests that should run on this node
-            CLASSNAMES=$(circleci tests glob "**/*.java" \
-              | cut -c 1- | sed 's@/@.@g' \
-              | sed 's/.\{5\}$//' \
-              | circleci tests split --split-by=timings --timings-type=classname)
+            
+            circlei tests glob "**/*.java" | cut -c 1- | sed 's@/@.@g' | sed 's/.\{5\}$//' | circleci tests run --command ">classnames.txt xargs echo" --verbose --split-by=timings --timings-type=classname)
             cd ../../..
+            
             # Format the arguments to "./gradlew test"
-            GRADLE_ARGS=$(echo $CLASSNAMES | awk '{for (i=1; i<=NF; i++) print "--tests",$i}')
+            GRADLE_ARGS=$(cat filenames.txt | awk '{for (i=1; i<=NF; i++) print "--tests",$i}')
             echo "Prepared arguments for Gradle: $GRADLE_ARGS"
+            
             ./gradlew test $GRADLE_ARGS
       - run:
           name: Generate code coverage report
