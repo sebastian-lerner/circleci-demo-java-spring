@@ -53,11 +53,14 @@ jobs:
             # Get list of classnames of tests that should run on this node
             
             circleci tests glob "**/*.java" | cut -c 1- | sed 's@/@.@g' | sed 's/.\{5\}$//' | circleci tests run --command ">classnames.txt xargs echo" --verbose --split-by=timings --timings-type=classname
-            cd ../../..
             
-            cat classnames.txt
+            
             # Format the arguments to "./gradlew test"
-            GRADLE_ARGS=$(cat classnames.txt | awk '{for (i=1; i<=NF; i++) print "--tests",$i}')
+            cd ../../..
+
+            cat src/test/java/classnames.txt
+
+            GRADLE_ARGS=$(cat src/test/java/classnames.txt | awk '{for (i=1; i<=NF; i++) print "--tests",$i}')
             echo "Prepared arguments for Gradle: $GRADLE_ARGS"
 
             ./gradlew test $GRADLE_ARGS
