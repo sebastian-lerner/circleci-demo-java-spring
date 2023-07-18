@@ -56,7 +56,7 @@ jobs:
             cd ../../..
             
             # Format the arguments to "./gradlew test"
-            GRADLE_ARGS=$(cat filenames.txt | awk '{for (i=1; i<=NF; i++) print "--tests",$i}')
+            GRADLE_ARGS=$(cat classnames.txt | awk '{for (i=1; i<=NF; i++) print "--tests",$i}')
             echo "Prepared arguments for Gradle: $GRADLE_ARGS"
 
             ./gradlew test $GRADLE_ARGS
