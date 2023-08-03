@@ -67,7 +67,7 @@ jobs:
           command: |
             cat src/test/java/classnames.txt
             GRADLE_ARGS=$(cat src/test/java/classnames.txt | awk '{for (i=1; i<=NF; i++) print "--tests",$i}')
-            echo "Prepared arguments for Gradle: $GRADLE_ARGS"
+            echo " Prepared arguments for Gradle: $GRADLE_ARGS"
 
             ./gradlew test $GRADLE_ARGS
       - run:
