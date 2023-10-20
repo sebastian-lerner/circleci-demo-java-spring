@@ -58,7 +58,7 @@ jobs:
             
             [ -s classnames.txt ] || circleci-agent step halt
 
-            # Format the arguments to "./gradlew test"
+            # Format the arguments to "./gradlew test" 
             cd ../../..
 
       - run:
