@@ -46,6 +46,10 @@ jobs:
       - attach_workspace:
           at: .
       - run:
+          name: output help
+          command: |
+            circleci tests run --verbose --help
+      - run:
           name: get test names
           # Use "./gradlew test" instead if tests are not run in parallel 
           command: |
