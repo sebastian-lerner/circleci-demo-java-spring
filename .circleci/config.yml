@@ -46,6 +46,8 @@ jobs:
       - attach_workspace:
           at: .
       - run:
+          command: echo $CIRCLE_PROJECT_USERNAME
+      - run:
           name: output help
           command: |
             circleci tests run --verbose --help
