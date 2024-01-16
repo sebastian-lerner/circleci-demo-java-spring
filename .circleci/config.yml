@@ -46,7 +46,7 @@ jobs:
       - attach_workspace:
           at: .
       - run:
-          command: echo $CIRCLE_PROJECT_USERNAME
+          command: echo pipeline.trigger_parameters.circleci.event_type
       - run:
           name: output help
           command: |
