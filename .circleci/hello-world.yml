@@ -16,5 +16,5 @@ jobs:
 workflows: 
   ghApp: 
     jobs: 
-      - hello-job   
+      - hello-job    
  
