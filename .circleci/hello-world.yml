@@ -9,7 +9,7 @@ jobs:
       - run: echo "hello world" # run the `echo` command
 
 workflows:
-  my-workflow:
+  ghApp:
     jobs:
       - hello-job  
  
