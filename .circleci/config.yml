@@ -28,6 +28,7 @@ jobs:
           root: .
           paths:
             - build
+      - run: sleep 30
   test:
     # Remove if parallelism is not desired
     parallelism: 2
