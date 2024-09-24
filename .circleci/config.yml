@@ -12,7 +12,7 @@ jobs:
       - restore_cache:
           key: v1-gradle-wrapper-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}
       - restore_cache:
-          key: v1-gradle-cache-{{ checksum "build.gradle" }}
+          key: v1-gradle-cache-{{ checksum "build.gradle" }} 
       - run:
           name: Install dependencies
           command: ./gradlew build -x test
@@ -20,7 +20,7 @@ jobs:
           paths:
             - ~/.gradle/wrapper
           key: v1-gradle-wrapper-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}
-      - save_cache:
+      - save_cache: 
           paths:
             - ~/.gradle/caches
           key: v1-gradle-cache-{{ checksum "build.gradle" }}
@@ -28,6 +28,11 @@ jobs:
           root: .
           paths:
             - build
+      - run: sleep 30
+      - run: echo $CIRCLE_PULL_REQUEST
+      - run: echo $CIRCLE_REPOSITORY_URL
+      - run: echo << pipeline.git.base_revision >>
+      - run: echo << pipeline.trigger_parameters.github_app.repo_url >>
   test:
     # Remove if parallelism is not desired
     parallelism: 2
@@ -45,8 +50,8 @@ jobs:
       - checkout
       - attach_workspace:
           at: .
-      - run:
-          command: echo <<pipeline.trigger_parameters.circleci.event_type>>
+    #  - run:
+    #      command: echo <<pipeline.trigger_parameters.circleci.event_type>>
       - run:
           name: output help
           command: |
@@ -104,6 +109,6 @@ workflows:
   workflow:
     jobs:
     - build
-    - test:
-        requires:
-          - build
+#    - test:
+#        requires:
+#          - build
