@@ -9,17 +9,14 @@ jobs:
       - run: echo "hello world" # run the `echo` command
  #     - run: sleep 30 
  #     - run: exit 1
-      - run: echo $CIRCLE_PULL_REQUEST
-      - run: echo $CIRCLE_REPOSITORY_URL
-      - run: echo "This is pipeline ID << pipeline.id >>"
-      - run: echo "This is base revision << pipeline.git.base_revision >>"
-      - run: echo << pipeline.trigger_parameters.github_app.repo_url >>  
+ #     - run: echo $CIRCLE_PULL_REQUEST
+ #     - run: echo $CIRCLE_REPOSITORY_URL
+ #     - run: echo "This is pipeline ID << pipeline.id >>"
+ #     - run: echo "This is base revision << pipeline.git.base_revision >>"
+ #     - run: echo << pipeline.trigger_parameters.github_app.repo_url >>  
       - jq/install
-      - run:
-          name: Shallow Clone
-          environment:
-            WEBHOOK_BRANCH: << pipeline.trigger_parameters.webhook.body >> | jq .branch
-      - run: echo $WEBHOOK_BRANCH
+      - run: echo << pipeline.trigger_parameters.webhook.body >> | jq .branch
+
 workflows: 
   ghApp: 
     jobs: 
