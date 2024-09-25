@@ -7,12 +7,12 @@ jobs:
     steps:
       - checkout # check out the code in the project directory
       - run: echo "hello world" # run the `echo` command
-      - run: sleep 30 
+ #     - run: sleep 30 
  #     - run: exit 1
       - run: echo $CIRCLE_PULL_REQUEST
       - run: echo $CIRCLE_REPOSITORY_URL
       - run: echo "This is pipeline ID << pipeline.id >>"
-      - run: echo << pipeline.git.base_revision >>
+      - run: echo "This is base revision << pipeline.git.base_revision >>"
       - run: echo << pipeline.trigger_parameters.github_app.repo_url >> 
  #     - run: echo << pipeline.config_source >>
 workflows: 
