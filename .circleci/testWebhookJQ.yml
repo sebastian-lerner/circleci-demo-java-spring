@@ -12,7 +12,7 @@ jobs:
  #     - run: echo $CIRCLE_PULL_REQUEST
  #     - run: echo $CIRCLE_REPOSITORY_URL
  #     - run: echo "This is pipeline ID << pipeline.id >>"
- #     - run: echo "This is base revision << pipeline.git.base_revision >>"
+ #     - run: echo "This is base revision << pipeline.git.base_revision >>" 
  #     - run: echo << pipeline.trigger_parameters.github_app.repo_url >>  
       - jq/install
       - run: echo << pipeline.trigger_parameters.webhook.body >> | jq .branch
