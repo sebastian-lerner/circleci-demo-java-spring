@@ -28,7 +28,7 @@ jobs:
           root: .
           paths:
             - build
-      - run: sleep 30
+#      - run: sleep 30
       - run: echo $CIRCLE_PULL_REQUEST
       - run: echo $CIRCLE_REPOSITORY_URL
       - run: echo << pipeline.id >>
