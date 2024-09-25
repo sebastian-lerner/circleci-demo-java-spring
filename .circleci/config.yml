@@ -12,6 +12,6 @@ jobs:
       - run: echo << pipeline.config_source >>
 
 workflows:
-  ghOAuthWorfklow:
+  ghOAuthWorfklow: 
     jobs:
       - ghOAuthJob
