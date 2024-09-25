@@ -9,7 +9,6 @@ jobs:
       - run: echo "i'm a github OAuth job" # run the `echo` command
       - run: echo "This is pipeline ID << pipeline.id >>"
       - run: echo << pipeline.git.base_revision >>
-      - run: echo << pipeline.trigger_parameters.github_app.repo_url >> 
       - run: echo << pipeline.config_source >>
 
 workflows:
