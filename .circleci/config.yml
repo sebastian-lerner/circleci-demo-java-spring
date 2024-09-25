@@ -9,7 +9,7 @@ jobs:
       - run: echo "hello world" # run the `echo` commandk
       - run: echo $CIRCLE_PR_NUMBER
       - run: echo $CIRCLE_PR_REPONAME
-      - run: echo $CIRCLE_PULL_REQUEST
+      - run: echo $CIRCLE_PULL_REQUEST 
 
 workflows:
   forkPR:
