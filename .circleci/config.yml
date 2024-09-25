@@ -1,115 +1,15 @@
-version: 2
+version: 2.1
+
 jobs:
-  build:
-    environment:
-      # Configure the JVM and Gradle  to avoid OOM errors
-      _JAVA_OPTIONS: "-Xmx3g"
-      GRADLE_OPTS: "-Dorg.gradle.daemon=false -Dorg.gradle.workers.max=2" 
+  ghOAuthJob:
     docker:
-      - image: circleci/openjdk:11.0.3-jdk-stretch
+      - image: cimg/node:17.2.0 # the primary container, where your job's commands are run
     steps:
-      - checkout
-      - restore_cache:
-          key: v1-gradle-wrapper-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}
-      - restore_cache:
-          key: v1-gradle-cache-{{ checksum "build.gradle" }} 
-      - run:
-          name: Install dependencies
-          command: ./gradlew build -x test
-      - save_cache:
-          paths:
-            - ~/.gradle/wrapper
-          key: v1-gradle-wrapper-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}
-      - save_cache: 
-          paths:
-            - ~/.gradle/caches
-          key: v1-gradle-cache-{{ checksum "build.gradle" }}
-      - persist_to_workspace:
-          root: .
-          paths:
-            - build
-#      - run: sleep 30
-      - run: echo $CIRCLE_PULL_REQUEST
-      - run: echo $CIRCLE_REPOSITORY_URL
-      - run: echo << pipeline.id >>
-      - run: echo << pipeline.git.base_revision >>
-      - run: echo << pipeline.trigger_parameters.github_app.repo_url >>
-  test:
-    # Remove if parallelism is not desired
-    parallelism: 2
-    environment:
-      # Configure the JVM and Gradle to avoid OOM errors
-      _JAVA_OPTIONS: "-Xmx3g"
-      GRADLE_OPTS: "-Dorg.gradle.daemon=false -Dorg.gradle.workers.max=2"
-    docker:
-      - image: circleci/openjdk:11.0.3-jdk-stretch
-      - image: circleci/postgres:12-alpine
-        environment:
-          POSTGRES_USER: postgres
-          POSTGRES_DB: circle_test
-    steps:
-      - checkout
-      - attach_workspace:
-          at: .
-    #  - run:
-    #      command: echo <<pipeline.trigger_parameters.circleci.event_type>>
-      - run:
-          name: output help
-          command: |
-            circleci tests run --verbose --help
-      - run:
-          name: get test names
-          # Use "./gradlew test" instead if tests are not run in parallel 
-          command: |
-            cd src/test/java
-            # Get list of classnames of tests that should run on this node
-            
-            circleci tests glob "**/*.java" | cut -c 1- | sed 's@/@.@g' | sed 's/.\{5\}$//' | circleci tests run --command ">classnames.txt xargs echo" --verbose --split-by=timings --timings-type=classname
-            refined=$(cat classnames.txt | awk '{for (i=1; i<=NF; i++) print "",$i}')
-            echo "$refined"
-            
-            [ -s classnames.txt ] || circleci-agent step halt
-
-            # Format the arguments to "./gradlew test" 
-            cd ../../..
-
-      - run:
-          name: Run tests in parallel
-        # Use "./gradlew test" instead if tests are not run in parallel
-          command: |
-            cat src/test/java/classnames.txt
-            GRADLE_ARGS=$(cat src/test/java/classnames.txt | awk '{for (i=1; i<=NF; i++) print "--tests",$i}')
-            echo " Prepared arguments for Gradle: $GRADLE_ARGS"
-
-            ./gradlew test $GRADLE_ARGS
-      - run:
-          name: Generate code coverage report
-          command:
-            ./gradlew jacocoTestReport
-      - store_test_results:
-          path: build/test-results/test
-      - store_artifacts: 
-          path: build/test-results/test
-          when: always
-      - store_artifacts:
-          path: build/reports/jacoco/test/html
-          when: always
-      - run:
-          name: Assemble JAR
-          command: |
-            # Skip this for other nodes
-            if [ "$CIRCLE_NODE_INDEX" == 0 ]; then 
-              ./gradlew assemble
-            fi
-      # This will be empty for all nodes except the first one add comment
-      - store_artifacts:
-          path: build/libs
+      - checkout # check out the code in the project directory
+      - run: echo "i'm a github OAuth job" # run the `echo` command
+      - run: echo "This is pipeline ID << pipeline.id >>"
 
 workflows:
-  version: 2
-  workflow:
+  ghOAuthWorfklow:
     jobs:
-    - build
-#    - test:
-#        requires:
-#          - build
+      - ghOAuthJob
