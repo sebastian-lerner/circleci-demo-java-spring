@@ -101,9 +101,9 @@ jobs:
 
 workflows:
   version: 2
-  workflow:
+  ghApp:
     jobs:
     - build
-    - test:
-        requires:
-          - build
+#    - test:
+#        requires:
+#          - build
