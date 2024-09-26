@@ -9,6 +9,6 @@ jobs:
       - run: echo "im the HEAD branch"
 
 workflows:
-  my-workflow:
+  my-workflow: 
     jobs:
       - test-fork
