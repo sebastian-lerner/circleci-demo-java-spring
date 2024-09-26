@@ -19,7 +19,7 @@ jobs:
           name: Shallow Clone
           environment:
             WEBHOOK_BRANCH: << pipeline.trigger_parameters.webhook.body >> | jq .branch
-      - run: echo $WEBHOOK_BRANCH
+      - run: echo $WEBHOOK_BRANCH 
 workflows: 
   ghApp: 
     jobs: 
