@@ -6,7 +6,7 @@ jobs:
       - image: cimg/node:17.2.0 # the primary container, where your job's commands are run
     steps:
       - checkout # check out the code in the project directory
-      - run: echo "i'm a github OAuth job" # run the `echo` command
+      - run: echo "i'm a github OAuth job" # run the `echo` command 
       - run: echo "This is pipeline ID << pipeline.id >>"
       - run: echo << pipeline.git.base_revision >>
       - run: echo << pipeline.config_source >>
