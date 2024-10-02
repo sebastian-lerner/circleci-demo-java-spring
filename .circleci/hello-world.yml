@@ -24,9 +24,19 @@ jobs:
       - run: echo << pipeline.project.git_url >>
       - run: echo << pipeline.trigger_parameters.github_app.repo_name >>
       - run: echo << pipeline.trigger_parameters.github_app.commit_title >> 
+  job2:
+    docker:
+      - image: cimg/node:17.2.0
+    steps:
+      - checkout
+      - run: exit 1
+  
 workflows: 
   ghApp: 
     jobs: 
-      - hello-job    
+      - hello-job
+      - job2
+          requires:
+            -hello-job
  
  
