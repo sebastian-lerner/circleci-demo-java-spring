@@ -37,6 +37,6 @@ workflows:
       - hello-job
       - job2:
           requires:
-            -hello-job
+            - hello-job
  
  
