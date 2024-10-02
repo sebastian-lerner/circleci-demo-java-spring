@@ -35,7 +35,7 @@ workflows:
   ghApp: 
     jobs: 
       - hello-job
-      - job2
+      - job2:
           requires:
             -hello-job
  
