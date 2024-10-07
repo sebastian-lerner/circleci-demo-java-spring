@@ -12,7 +12,7 @@ jobs:
       - run: echo << pipeline.config_source >> 
       - run: echo << pipeline.trigger_parameters.github_app.repo_name >>
       - run: echo << pipeline.trigger_parameters.github_app.commit_title >> 
-
+ 
 workflows: 
   ghOAuthWorfklow:
     jobs:
