@@ -22,8 +22,8 @@ jobs:
       - run: echo << pipeline.git.tag >>
       - run: echo << pipeline.project.url >> 
       - run: echo << pipeline.project.git_url >>
-      - run: echo << pipeline.trigger_parameters.github_app.repo_name >>
-      - run: echo << pipeline.trigger_parameters.github_app.commit_title >> 
+#      - run: echo << pipeline.trigger_parameters.github_app.repo_name >>
+#      - run: echo << pipeline.trigger_parameters.github_app.commit_title >> 
   job2:
     docker:
       - image: cimg/node:17.2.0
