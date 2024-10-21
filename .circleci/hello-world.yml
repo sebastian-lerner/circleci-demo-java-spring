@@ -18,7 +18,7 @@ jobs:
       - run: echo $CIRCLE_PR_NUMBER 
       - run: echo << pipeline.git.branch >>
       - run: echo << pipeline.git.commit.author_email >>
-      - run: echo << pipeline.trigger_parameters.github_app.user_id >>
+#      - run: echo << pipeline.trigger_parameters.github_app.user_id >>
       - run: echo << pipeline.git.tag >>
       - run: echo << pipeline.project.url >> 
       - run: echo << pipeline.project.git_url >>
