@@ -1,7 +1,7 @@
 version: 2.1
 parameters:
   test:
-    type: String
+    type: string
     default: "hi"
 
     
