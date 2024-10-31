@@ -1,8 +1,8 @@
 version: 2.1
 parameters:
   test:
-    type: boolean
-    default: false
+    type: String
+    default: "hi"
 
     
 jobs:
