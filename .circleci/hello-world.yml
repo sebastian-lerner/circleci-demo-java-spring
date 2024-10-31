@@ -1,8 +1,8 @@
 version: 2.1
 parameters:
   test:
-    type: long
-    default: 1245
+    type: boolean
+
     
 jobs:
   hello-job:
