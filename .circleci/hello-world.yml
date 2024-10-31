@@ -18,7 +18,7 @@ jobs:
       - run: echo $CIRCLE_REPOSITORY_URL
       - run: echo "This is pipeline ID << pipeline.id >>" 
       - run: echo "This is base revision << pipeline.git.base_revision >>"   
-      - run: echo << pipeline.trigger_parameters.github_app.repo_url >>  
+      - run: echo << pipeline.trigger_parameters.github_app.repo_url >>   
       - run: echo $CIRCLE_PR_REPONAME 
       - run: echo $CIRCLE_PR_NUMBER 
       - run: echo << pipeline.git.branch >>
