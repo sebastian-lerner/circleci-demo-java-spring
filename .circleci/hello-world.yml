@@ -1,7 +1,7 @@
 version: 2.1
 parameters:
   test:
-    type: boolean
+    type: long
     default: false
     
 jobs:
