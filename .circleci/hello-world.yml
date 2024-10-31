@@ -1,5 +1,8 @@
 version: 2.1
-
+parameters:
+  test:
+    type: boolean
+    
 jobs:
   hello-job:
     docker:
