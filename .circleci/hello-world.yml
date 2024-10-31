@@ -2,7 +2,6 @@ version: 2.1
 parameters:
   test:
     type: long
-    default: false
     
 jobs:
   hello-job:
