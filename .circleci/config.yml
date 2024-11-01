@@ -98,12 +98,21 @@ jobs:
       # This will be empty for all nodes except the first one add comment
       - store_artifacts:
           path: build/libs
+  testCron:
+    triggers:
+      - schedule:
+          cron: '15 * * * *' 
+          filters:
+            branches:
+              only:
+                - cronjob-circle-test
 
 workflows:
   version: 2
   mainBranch:
     jobs:
     - build
+    - testCron
 #    - test:
 #        requires:
 #          - build
