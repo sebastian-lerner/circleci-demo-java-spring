@@ -12,4 +12,4 @@ jobs:
 workflows:
   my-workflow:
     jobs:
-      - hello-job
+      - hello-job 
